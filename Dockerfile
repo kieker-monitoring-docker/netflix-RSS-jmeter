@@ -66,7 +66,7 @@ RUN \
 CMD \
   cp -nr ${KIEKER_TMP_CONFIG_FOLDER}/* ${KIEKER_CONFIG_FOLDER}/ && \
   rm ${KIEKER_TMP_CONFIG_FOLDER}/ -r && \
-  ${JMETER_HOME}/bin/jmeter-server -j
+  ${JMETER_HOME}/bin/jmeter-server
   
 VOLUME ["/opt/kieker"]
   
