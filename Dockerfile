@@ -20,7 +20,7 @@ ENV JMETER_FOLDER /opt/jmeter
 ENV KIEKER_MONITORING_PROPERTIES kieker.monitoring.properties
 ENV KIEKER_AGENT_JAR agent.jar
 ENV KIEKER_JMETER_ZIP jmeter.zip
-ENV KIEKER_JMETER_USER_PROPS user.properties
+#ENV KIEKER_JMETER_USER_PROPS user.properties
 
 COPY ${KIEKER_MONITORING_PROPERTIES} ${KIEKER_TMP_CONFIG_FOLDER}/${KIEKER_MONITORING_PROPERTIES} 
 COPY lib/* ${KIEKER_LIB_FOLDER}/
@@ -52,12 +52,13 @@ RUN \
     -Daj.weaving.verbose=true \
     -Dkieker.monitoring.skipDefaultAOPConfiguration=true \
     \"" ${JMETER_HOME}/bin/jmeter && \
-  sed -i '136i\'"export ARGS=\"\${KIEKER_JAVA_OPTS} \${ARGS}\"" ${JMETER_HOME}/bin/jmeter && \
-  chmod -R u+w ${JMETER_HOME} && \
-  chmod +x ${JMETER_HOME}/bin/jmeter && \
-  chmod +x ${JMETER_HOME}/bin/jmeter-server
+  sed -i '136i\'"export ARGS=\"\${KIEKER_JAVA_OPTS} \${ARGS}\"" ${JMETER_HOME}/bin/jmeter 
+ # && \
+ # chmod -R u+w ${JMETER_HOME} && \
+ # chmod +x ${JMETER_HOME}/bin/jmeter && \
+ # chmod +x ${JMETER_HOME}/bin/jmeter-server
   
-COPY jmeter/${KIEKER_JMETER_USER_PROPS} ${JMETER_HOME}/bin/
+# COPY jmeter/${KIEKER_JMETER_USER_PROPS} ${JMETER_HOME}/bin/
   
 CMD \
   cp -nr ${KIEKER_TMP_CONFIG_FOLDER}/* ${KIEKER_CONFIG_FOLDER}/ && \
