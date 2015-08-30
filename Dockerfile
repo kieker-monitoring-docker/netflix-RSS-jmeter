@@ -52,11 +52,13 @@ RUN \
     -Daj.weaving.verbose=true \
     -Dkieker.monitoring.skipDefaultAOPConfiguration=true \
     \"" ${JMETER_HOME}/bin/jmeter && \
-  sed -i '136i\'"export ARGS=\"\${KIEKER_JAVA_OPTS} \${ARGS}\"" ${JMETER_HOME}/bin/jmeter 
- # && \
- # chmod -R u+w ${JMETER_HOME} && \
- # chmod +x ${JMETER_HOME}/bin/jmeter && \
- # chmod +x ${JMETER_HOME}/bin/jmeter-server
+  sed -i '136i\'"export ARGS=\"\${KIEKER_JAVA_OPTS} \${ARGS}\"" ${JMETER_HOME}/bin/jmeter
+
+# Allow execution of jmeter scripts
+RUN \
+  chmod -R u+w ${JMETER_HOME} && \
+  chmod +x ${JMETER_HOME}/bin/jmeter && \
+  chmod +x ${JMETER_HOME}/bin/jmeter-server
   
 # COPY jmeter/${KIEKER_JMETER_USER_PROPS} ${JMETER_HOME}/bin/
   
@@ -64,7 +66,7 @@ CMD \
   cp -nr ${KIEKER_TMP_CONFIG_FOLDER}/* ${KIEKER_CONFIG_FOLDER}/ && \
   rm ${KIEKER_TMP_CONFIG_FOLDER}/ -r && \
   cd ${JMETER_HOME}/bin && \
-  ./jmeter-server
+  ./jmeter-server -l ${KIEKER_LOGS_FOLDER}/jmeter.log
   
 VOLUME ["/opt/kieker"]
   
