@@ -65,6 +65,7 @@ RUN \
 CMD \
   cp -nr ${KIEKER_TMP_CONFIG_FOLDER}/* ${KIEKER_CONFIG_FOLDER}/ && \
   rm ${KIEKER_TMP_CONFIG_FOLDER}/ -r && \
+  rm ${JMETER_FOLDER} -r && \
   cd ${JMETER_HOME}/bin && \
   ./jmeter-server -l ${KIEKER_LOGS_FOLDER}/jmeter.log
   
