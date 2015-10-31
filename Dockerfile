@@ -29,7 +29,7 @@ RUN \
   mkdir -p ${KIEKER_BIN_FOLDER} && \
   echo "kieker.monitoring.writer.filesystem.AsyncFsWriter.customStoragePath = ${KIEKER_LOGS_FOLDER}" > ${KIEKER_CONFIG_FOLDER}/${KIEKER_MONITORING_PROPERTIES}
   
-ENV KIEKER_VERSION 1.13-20151030.170908-4
+ENV KIEKER_VERSION 1.13-20151031.014302-5
 ENV KIEKER_BIN_ZIP_URL "http://build.se.informatik.uni-kiel.de/jenkins/job/kieker-nightly-release/lastSuccessfulBuild/artifact/build/distributions/kieker-${KIEKER_VERSION}-binaries.zip"
 ENV KIEKER_JMETER_VERSION 2.13
 ENV KIEKER_JMETER_NAME apache-jmeter-${KIEKER_JMETER_VERSION}
